@@ -1,5 +1,5 @@
 # Docker-PostgreSQL-Postgraphile
-The purpose of this repository is to provide a project template to build a **GraphQL API** using **Docker**, **PostgreSQL** and **Postgraphile**.
+Tutorial to build a **GraphQL API** using **Docker**, **PostgreSQL** and **Postgraphile**.
 
 # Tutorial
 The [Github Wiki](https://github.com/alexisrolland/docker-postgresql-postgraphile/wiki/Docker-PostgreSQL-Postgraphile-Tutorial) provides detailed design intentions in a step by step tutorial.
