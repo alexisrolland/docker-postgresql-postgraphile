@@ -2,41 +2,39 @@ version: '3'
 services:
 
   db:
-    container_name: psql
+    container_name: my-db
     restart: always
-    image: psql
+    image: my-db
     build:
       context: ./db
     volumes:
-      - ./db/data/:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234  # To be moved to environment file
-      POSTGRES_DATABASE: your_database
-    expose:
-      - 5432
+      - my-db-volume:/var/lib/postgresql/data
+    env_file:
+        - ./.env
+    networks:
+      - default
     ports:
       - 5432:5432
-    networks:
-      - psql-pgql
 
   graphql:
-    container_name: pgql
+    container_name: my-graphql
     restart: always
     image: graphile/postgraphile
+    env_file:
+      - ./.env
     depends_on:
       - db
-    environment:
-      DATABASE_URL: postgres://postgres:1234@db:5432/your_database # To be moved to environment file
-    expose:
-      - 5000
-    ports:
-      - 5000:5000
-    command: ["postgraphile", "--connection", $DATABASE_URL, "--host", "0.0.0.0", "--port", "5000", "--schema", "your_schema"]
-    links:
-      - db
     networks:
-      - psql-pgql
+      - default
+    ports:
+      - 5433:5433
+    command: ["postgraphile", "--connection", "${DATABASE_URL}", "--port", "5433", "--schema", "my_schema"]
 
 networks:
-  psql-pgql:
+  default:
+    external:
+      name: my-network
+
+volumes:
+  my-db-volume:
+    external: true
