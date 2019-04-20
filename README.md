@@ -1,10 +1,8 @@
 # Docker-PostgreSQL-Postgraphile
 Tutorial to build a **GraphQL API** using **Docker**, **PostgreSQL** and **Postgraphile**.
 
-See [Github Wiki](https://github.com/alexisrolland/docker-postgresql-postgraphile/wiki).
-
 # Requirements
-This project requires to have Docker and Docker Compose installed on your machine. To install it, follow the steps described here: [Requirements](https://github.com/alexisrolland/docker-postgresql-postgraphile/wiki#requirements)
+This project requires to have Docker and Docker Compose installed on your machine. To install them follow the steps described here: [Requirements](https://github.com/alexisrolland/docker-postgresql-postgraphile/wiki#requirements)
 
 # Tutorial
 To rebuild this project from scratch, follow the tutorial on the [Wiki](https://github.com/alexisrolland/docker-postgresql-postgraphile/wiki)
@@ -24,7 +22,7 @@ $ docker network create my-network
 $ docker-compose up
 ```
 
-Navigate to the following URL to access the interactive documentation of your API:
+You can navigate to the following URL to access **GraphiQL**, the interactive documentation of your API:
 * Linux: `http://localhost:5433/graphiql`
 * Windows Pro: `http://localhost:5433/graphiql`
 * Windows Home: `http://<your_docker_ip>:5433/graphiql`, you can get `<your_docker_ip>` with the command `docker-machine ip`
