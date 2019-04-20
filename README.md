@@ -1,6 +1,8 @@
 # Docker-PostgreSQL-Postgraphile
 Tutorial to build a **GraphQL API** using **Docker**, **PostgreSQL** and **Postgraphile**.
 
+![Architecture](https://github.com/alexisrolland/docker-postgresql-postgraphile/blob/master/doc/architecture.png)
+
 # Requirements
 This project requires to have Docker and Docker Compose installed on your machine. To install them follow the steps described here: [Requirements](https://github.com/alexisrolland/docker-postgresql-postgraphile/wiki#requirements)
 
