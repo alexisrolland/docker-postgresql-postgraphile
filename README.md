@@ -14,12 +14,6 @@ To run the project database and GraphQL API with the current data model, simply 
 ```shell
 $ cd docker-postgresql-postgraphile
 
-# Create docker volume to persist database data
-$ docker volume create my-db-volume
-
-# Create docker network to connect containers
-$ docker network create my-network
-
 # Start containers
 $ docker-compose up
 ```

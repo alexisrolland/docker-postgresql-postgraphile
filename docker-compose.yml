@@ -1,6 +1,5 @@
-version: '3'
+version: '3.1'
 services:
-
   db:
     container_name: my-db
     restart: always
@@ -8,7 +7,7 @@ services:
     build:
       context: ./db
     volumes:
-      - my-db-volume:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     env_file:
         - ./.env
     networks:
@@ -19,7 +18,9 @@ services:
   graphql:
     container_name: my-graphql
     restart: always
-    image: graphile/postgraphile
+    image: my-graphql
+    build:
+      context: ./graphql
     env_file:
       - ./.env
     depends_on:
@@ -28,13 +29,16 @@ services:
       - default
     ports:
       - 5433:5433
-    command: ["postgraphile", "--connection", "${DATABASE_URL}", "--port", "5433", "--schema", "my_schema"]
+    command: [
+      "postgraphile",
+      "--connection", "${DATABASE_URL}",
+      "--port", "5433",
+      "--schema", "my_schema",
+      "--append-plugins", "postgraphile-plugin-connection-filter"
+    ]
 
 networks:
-  default:
-    external:
-      name: my-network
+    network:
 
 volumes:
-  my-db-volume:
-    external: true
+    db:
