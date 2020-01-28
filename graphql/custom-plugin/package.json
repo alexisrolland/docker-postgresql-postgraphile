@@ -1,0 +1,16 @@
+{
+    "name": "custom-plugin",
+    "version": "0.0.1",
+    "description": "Custom plugin example for PostGraphile.",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Alexis ROLLAND",
+    "license": "Apache-2.0",
+    "dependencies": {
+        "graphile-build": "^4.5.0",
+        "graphile-utils": "^4.5.6",
+        "postgraphile": "^4.5.5"
+    }
+}
