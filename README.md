@@ -530,6 +530,24 @@ services:
 [...]
 ```
 
+At this stage, the repository should look like this.
+
+```
+/
+├─ db/
+|  ├─ init/
+|  |  ├─ 00-database.sql
+|  |  └─ 01-data.sql
+|  └─ Dockerfile
+├─ graphql/
+|  ├─ custom-plugin/
+|  |  ├─ index.js
+|  |  └─ package.json
+|  └─ Dockerfile
+├─ .env
+└─ docker-compose.yml
+```
+
 Finally rebuild and rerun the GraphQL container.
 
 ```shell
