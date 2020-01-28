@@ -1,25 +1,24 @@
-\connect my_database;
+/*Connecting to the database automatically creates it*/
+\connect forum_example;
 
-CREATE SCHEMA my_schema;
-CREATE TABLE my_schema.parent_table (
+/*Create user table in public schema*/
+CREATE TABLE public.user (
     id SERIAL PRIMARY KEY,
-    name TEXT,
-    description TEXT,
-    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    username TEXT,
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-COMMENT ON TABLE my_schema.parent_table IS
-'Provide a description for your parent table.';
+COMMENT ON TABLE public.user IS
+'Forum users.';
 
-CREATE TABLE my_schema.child_table (
+/*Create post table in public schema*/
+CREATE TABLE public.post (
     id SERIAL PRIMARY KEY,
-    name TEXT,
-    description TEXT,
+    title TEXT,
+    body TEXT,
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    parent_table_id INTEGER NOT NULL REFERENCES my_schema.parent_table(id)
+    author_id INTEGER NOT NULL REFERENCES public.user(id)
 );
 
-COMMENT ON TABLE my_schema.child_table IS
-'Provide a description for your child table.';
+COMMENT ON TABLE public.post IS
+'Forum posts written by a user.';

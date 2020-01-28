@@ -1,9 +1,9 @@
-version: "3.1"
+version: "3.3"
 services:
     db:
-        container_name: my-db
+        container_name: forum-example-db
         restart: always
-        image: my-db
+        image: forum-example-db
         build:
             context: ./db
         volumes:
@@ -16,9 +16,9 @@ services:
             - 5432:5432
 
     graphql:
-        container_name: my-graphql
+        container_name: forum-example-graphql
         restart: always
-        image: my-graphql
+        image: forum-example-graphql
         build:
             context: ./graphql
         env_file:
@@ -29,17 +29,7 @@ services:
             - network
         ports:
             - 5433:5433
-        command:
-            [
-                "--connection",
-                "${DATABASE_URL}",
-                "--port",
-                "5433",
-                "--schema",
-                "my_schema",
-                "--append-plugins",
-                "postgraphile-plugin-connection-filter,custom-plugin",
-            ]
+        command: ["--connection", "${DATABASE_URL}", "--port", "5433", "--schema", "public", "--append-plugins", "postgraphile-plugin-connection-filter"]
 
 networks:
     network:
